@@ -30,6 +30,7 @@ class VideoListAdapter(private val items:List<VideoItem>) :BaseAdapter() {
            ViewHolder().apply {
                imaegView = item.findViewById(R.id.iv_video)
                title = item.findViewById(R.id.tv_title)
+               playIcon = item.findViewById(R.id.iv_play)
                item.tag = this
            }
            item
@@ -39,13 +40,14 @@ class VideoListAdapter(private val items:List<VideoItem>) :BaseAdapter() {
         val item = getItem(p0) as VideoItem
         holder.imaegView.load(item.thumbnail)
         holder.title.text = item.title
-
         return itemView
 
     }
 
     class ViewHolder{
         lateinit var imaegView:ImageView
+        lateinit var playIcon:ImageView
         lateinit var title:TextView
+
     }
 }
