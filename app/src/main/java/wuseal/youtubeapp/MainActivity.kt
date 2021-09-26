@@ -1,11 +1,12 @@
 package wuseal.youtubeapp
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ListView
-import android.widget.Toast
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -18,11 +19,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val editText = findViewById<EditText>(R.id.edt_search)
+        val progress = findViewById<ProgressBar>(R.id.pb_progress)
         findViewById<Button>(R.id.btn_search).setOnClickListener {
+            hideKeyboard(it)
             lifecycleScope.launchWhenCreated {
-                Toast.makeText(this@MainActivity, "startLoad...", Toast.LENGTH_SHORT).show()
+                progress.visibility = View.VISIBLE
                 viewModel.search(editText.text.toString())
-                Toast.makeText(this@MainActivity, "Load OK", Toast.LENGTH_SHORT).show()
+                progress.visibility = View.GONE
             }
         }
         val listView = findViewById<ListView>(R.id.lv_search_result)
@@ -37,5 +40,10 @@ class MainActivity : AppCompatActivity() {
                 })
             }
         }
+    }
+
+    fun Context.hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

@@ -17,6 +17,7 @@
         <EditText
             android:id="@+id/edt_search"
             android:layout_width="0dp"
+            android:hint="Input to search youtube videos"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
@@ -27,10 +28,20 @@
             android:text="Search" />
     </LinearLayout>
 
-
-    <ListView
-        android:id="@+id/lv_search_result"
-        android:dividerHeight="2dp"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/lv_search_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:dividerHeight="2dp" />
+        <ProgressBar
+            android:id="@+id/pb_progress"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </FrameLayout>
 </LinearLayout>
