@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YoutubeApp">
         <activity
+            android:name=".VideoPlayActivity"
+            android:screenOrientation="landscape"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
